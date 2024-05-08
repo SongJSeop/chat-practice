@@ -16,3 +16,10 @@ client 폴더 안에 React 클라이언트 프로젝트가, server 폴더 안에
 
 - Spring Web
 - WebSocket
+
+## Client
+
+- React
+- Vite
+- TypeScript
+- yarn
