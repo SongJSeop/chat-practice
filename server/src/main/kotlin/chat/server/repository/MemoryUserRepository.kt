@@ -10,4 +10,8 @@ class MemoryUserRepository: UserRepository {
     override fun saveUser(id: String) {
         users.add(id)
     }
+
+    override fun findById(id: String): String? {
+        return users.find { it == id }
+    }
 }
