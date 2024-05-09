@@ -1,8 +1,9 @@
 import { createUser, existUserId } from "api";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useUserStore } from "stores";
 
 export default function Header() {
-  const [userId, setUserId] = useState("");
+  const { user, setUser } = useUserStore();
 
   useEffect(() => {
     const savedUserId = localStorage.getItem("userId");
@@ -12,7 +13,7 @@ export default function Header() {
       if (!isExist) {
         localStorage.removeItem("userId");
       } else {
-        setUserId(id);
+        setUser({ id });
       }
     }
 
@@ -23,18 +24,18 @@ export default function Header() {
 
   const handleCreateUser = async () => {
     const createdUserId = await createUser();
-    setUserId(createdUserId);
     localStorage.setItem("userId", createdUserId);
+    setUser({ id: createdUserId });
   };
 
   return (
     <header>
-      {userId ? (
-        <span>회원 id: {userId}</span>
+      {user ? (
+        <span>회원 id: {user.id}</span>
       ) : (
         <button onClick={handleCreateUser}>유저 생성</button>
       )}
-      {userId ? <button>방 생성</button> : null}
+      {user ? <button>방 생성</button> : null}
     </header>
   );
 }
