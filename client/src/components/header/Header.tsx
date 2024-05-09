@@ -1,22 +1,30 @@
-import { useUserStore } from "stores/useUserStore.ts";
 import { createUser } from "api";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-  const { user, setUser } = useUserStore();
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const savedUserId = localStorage.getItem("userId");
+    if (savedUserId) {
+      setUserId(savedUserId);
+    }
+  }, []);
 
   const handleCreateUser = async () => {
     const createdUserId = await createUser();
-    setUser({ id: createdUserId });
+    setUserId(createdUserId);
+    localStorage.setItem("userId", createdUserId);
   };
 
   return (
     <header>
-      {user ? (
-        <span>회원 id: {user.id}</span>
+      {userId ? (
+        <span>회원 id: {userId}</span>
       ) : (
         <button onClick={handleCreateUser}>유저 생성</button>
       )}
-      {user ? <button>방 생성</button> : null}
+      {userId ? <button>방 생성</button> : null}
     </header>
   );
 }
