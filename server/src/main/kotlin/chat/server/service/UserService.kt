@@ -1,5 +1,6 @@
 package chat.server.service
 
+import chat.server.model.User
 import chat.server.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -31,7 +32,7 @@ class UserService @Autowired constructor(
         return id.toString()
     }
 
-    fun getUserById(id: String): String? {
+    fun getUserById(id: String): User? {
         return userRepository.findById(id)
     }
 }
