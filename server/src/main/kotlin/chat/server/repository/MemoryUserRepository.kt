@@ -1,17 +1,19 @@
 package chat.server.repository
 
+import chat.server.model.User
 import org.springframework.stereotype.Repository
 
 @Repository
 class MemoryUserRepository: UserRepository {
 
-    private val users = mutableSetOf<String>()
+    private val users = mutableSetOf<User>()
 
     override fun saveUser(id: String) {
-        users.add(id)
+        val newUser = User(id)
+        users.add(newUser)
     }
 
-    override fun findById(id: String): String? {
-        return users.find { it == id }
+    override fun findById(id: String): User? {
+        return users.find { it.id == id }
     }
 }
