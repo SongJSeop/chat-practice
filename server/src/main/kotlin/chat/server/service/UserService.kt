@@ -30,4 +30,8 @@ class UserService @Autowired constructor(
         userRepository.saveUser(id.toString())
         return id.toString()
     }
+
+    fun getUserById(id: String): String? {
+        return userRepository.findById(id)
+    }
 }
