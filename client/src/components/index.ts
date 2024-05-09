@@ -1,2 +1,1 @@
-export * from "./ChatRoomContainer.tsx";
-export * from "./ChatRoom";
+export * from "./chat";
