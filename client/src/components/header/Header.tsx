@@ -1,4 +1,4 @@
-import { createUser } from "api";
+import { createUser, existUserId } from "api";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -6,8 +6,18 @@ export default function Header() {
 
   useEffect(() => {
     const savedUserId = localStorage.getItem("userId");
+
+    async function checkUserId(id: string) {
+      const isExist = await existUserId(id);
+      if (!isExist) {
+        localStorage.removeItem("userId");
+      } else {
+        setUserId(id);
+      }
+    }
+
     if (savedUserId) {
-      setUserId(savedUserId);
+      checkUserId(savedUserId);
     }
   }, []);
 
