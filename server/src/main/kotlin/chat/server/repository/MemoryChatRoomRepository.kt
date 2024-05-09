@@ -22,7 +22,7 @@ class MemoryChatRoomRepository(
         TODO("Not yet implemented")
     }
 
-    override fun getChatRooms(): List<ChatRoom> {
+    override fun getAllChatRooms(): List<ChatRoom> {
         return chatRooms.values.toList()
     }
 
