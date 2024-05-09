@@ -24,4 +24,5 @@ header {
     background-color: var(--header-color);
     height: 80px;
     margin: 20px 200px 0 200px;
+    padding: 20px;
 }
