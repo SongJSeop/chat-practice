@@ -1,14 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './global.css'
-import {ChatRoom} from "components";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./global.css";
+import {
+  ChatRoomContainer,
+  ChatRoomContainerHeader,
+  ChatRoom,
+} from "components";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ChatRoom />
-    <ChatRoom />
-    <ChatRoom />
-    <ChatRoom />
-    <ChatRoom />
+    <ChatRoomContainer>
+      <ChatRoomContainerHeader />
+      <ChatRoom />
+      <ChatRoom />
+      <ChatRoom />
+      <ChatRoom />
+      <ChatRoom />
+    </ChatRoomContainer>
   </React.StrictMode>,
-)
+);
