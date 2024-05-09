@@ -1,7 +1,9 @@
 :root {
     --background-color: #141517;
+    --header-color: #c2cbd9;
     --chat-room-color: #b6b3b3;
     --chat-room-hover-color: #d9d9d9;
+    --chat-room-header-color: #9e9ecd;
 }
 
 * {
@@ -13,4 +15,13 @@
 body {
     background-color: var(--background-color);
     margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-color);
+    height: 80px;
+    margin: 20px 200px 0 200px;
 }

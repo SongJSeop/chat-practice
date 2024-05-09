@@ -14,5 +14,5 @@ export const ChatRoomContainerHeader = styled.div`
   height: 80px;
   border: 1px solid var(--background-color);
   border-radius: 5px;
-  background-color: #9e9ecd;
+  background-color: var(--chat-room-header-color);
 `;
