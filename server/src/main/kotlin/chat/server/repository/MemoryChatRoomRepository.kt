@@ -2,6 +2,7 @@ package chat.server.repository
 
 import chat.server.model.ChatRoom
 import org.springframework.stereotype.Repository
+import java.time.format.DateTimeFormatter
 
 @Repository
 class MemoryChatRoomRepository(
@@ -11,9 +12,13 @@ class MemoryChatRoomRepository(
     private val chatRooms = mutableMapOf<Int, ChatRoom>()
 
     override fun createChatRoom(title: String, ownerId: String): ChatRoom {
+        val createdAt = java.time.LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedDate = createdAt.format(formatter)
         val id = chatRooms.size + 1
         val ownerUser = userRepository.findById(ownerId) ?: throw IllegalArgumentException("User not found")
-        val chatRoom = ChatRoom(id = id, title = title, users = mutableListOf(ownerUser), owner = ownerUser)
+
+        val chatRoom = ChatRoom(id = id, title = title, users = mutableListOf(ownerUser), createdAt = formattedDate, owner = ownerUser)
         chatRooms[id] = chatRoom
         return chatRoom
     }
