@@ -2,12 +2,12 @@ import {
   ChatRoomContainer,
   ChatRoomContainerHeader,
 } from "./ChatRoomContainer";
-import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
+import { ChatRoom, ChatRoomData, ChatRoomInnerDiv } from "./ChatRoom";
 import { useEffect, useState } from "react";
 import { getAllChatRooms } from "api/chatApi.ts";
 
 export default function ChatPage() {
-  const [chatRooms, setChatRooms] = useState([]);
+  const [chatRooms, setChatRooms]: [ChatRoomData[], any] = useState([]);
 
   useEffect(() => {
     const getChatRooms = async () => {
