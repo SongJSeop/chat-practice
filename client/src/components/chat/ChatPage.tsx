@@ -18,6 +18,10 @@ export default function ChatPage() {
     getChatRooms();
   }, []);
 
+  const handleClickChatRoom = (chatRoomId: string) => {
+    alert(`ChatRoomId: ${chatRoomId}`);
+  };
+
   return (
     <ChatRoomContainer>
       <ChatRoomContainerHeader>
@@ -28,7 +32,11 @@ export default function ChatPage() {
         <ChatRoomInnerDiv widthPercent={10}>방장</ChatRoomInnerDiv>
       </ChatRoomContainerHeader>
       {chatRooms.map((chatRoom) => (
-        <ChatRoom>
+        <ChatRoom
+          onClick={() => {
+            handleClickChatRoom(chatRoom.id);
+          }}
+        >
           <ChatRoomInnerDiv widthPercent={10} className={"chat-room-id"}>
             {chatRoom.id}
           </ChatRoomInnerDiv>
