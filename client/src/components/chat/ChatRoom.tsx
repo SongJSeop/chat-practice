@@ -7,18 +7,19 @@ export const ChatRoom = styled.div`
   background-color: var(--chat-room-color);
   height: 50px;
   border: 1px solid var(--background-color);
+  min-width: 1000px;
 
   &:hover {
     background-color: var(--chat-room-hover-color);
+    cursor: pointer;
   }
 `;
 
 export const ChatRoomInnerDiv = styled.div<{
   widthPercent: number;
-  textAlign: string;
 }>`
   display: flex;
-  justify-content: ${(props) => props.textAlign};
+  justify-content: center;
   align-items: center;
   width: ${(props) => props.widthPercent}%;
   height: 100%;

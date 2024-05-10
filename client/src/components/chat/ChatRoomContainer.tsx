@@ -11,6 +11,7 @@ export const ChatRoomContainerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: 1000px;
   height: 80px;
   border: 1px solid var(--background-color);
   border-radius: 5px;
