@@ -7,6 +7,9 @@ export const createChatRoom = async (title: string, ownerId: string) => {
       title,
       ownerId,
     }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   return response.json();
 };
