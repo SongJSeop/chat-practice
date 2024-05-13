@@ -26,11 +26,11 @@ export default function ChatPage() {
   return (
     <ChatRoomContainer>
       <ChatRoomContainerHeader>
-        <ChatRoomInnerDiv widthPercent={10}>방 번호</ChatRoomInnerDiv>
-        <ChatRoomInnerDiv widthPercent={50}>방 제목</ChatRoomInnerDiv>
-        <ChatRoomInnerDiv widthPercent={10}>참여자 수</ChatRoomInnerDiv>
-        <ChatRoomInnerDiv widthPercent={20}>방 생성 날짜</ChatRoomInnerDiv>
-        <ChatRoomInnerDiv widthPercent={10}>방장</ChatRoomInnerDiv>
+        <ChatRoomInnerDiv $widthPercent={10}>방 번호</ChatRoomInnerDiv>
+        <ChatRoomInnerDiv $widthPercent={50}>방 제목</ChatRoomInnerDiv>
+        <ChatRoomInnerDiv $widthPercent={10}>참여자 수</ChatRoomInnerDiv>
+        <ChatRoomInnerDiv $widthPercent={20}>방 생성 날짜</ChatRoomInnerDiv>
+        <ChatRoomInnerDiv $widthPercent={10}>방장</ChatRoomInnerDiv>
       </ChatRoomContainerHeader>
       {chatRooms.map((chatRoom) => (
         <ChatRoom
@@ -39,19 +39,19 @@ export default function ChatPage() {
           }}
           key={chatRoom.id}
         >
-          <ChatRoomInnerDiv widthPercent={10} className={"chat-room-id"}>
+          <ChatRoomInnerDiv $widthPercent={10} className={"chat-room-id"}>
             {chatRoom.id}
           </ChatRoomInnerDiv>
-          <ChatRoomInnerDiv widthPercent={50}>
+          <ChatRoomInnerDiv $widthPercent={50}>
             {chatRoom.title}
           </ChatRoomInnerDiv>
-          <ChatRoomInnerDiv widthPercent={10}>
+          <ChatRoomInnerDiv $widthPercent={10}>
             {chatRoom.users.length}
           </ChatRoomInnerDiv>
-          <ChatRoomInnerDiv widthPercent={20}>
+          <ChatRoomInnerDiv $widthPercent={20}>
             {chatRoom.createdAt}
           </ChatRoomInnerDiv>
-          <ChatRoomInnerDiv widthPercent={10}>
+          <ChatRoomInnerDiv $widthPercent={10}>
             {chatRoom.owner.id}
           </ChatRoomInnerDiv>
         </ChatRoom>

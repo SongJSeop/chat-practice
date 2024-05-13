@@ -16,12 +16,12 @@ export const ChatRoom = styled.div`
 `;
 
 export const ChatRoomInnerDiv = styled.div<{
-  widthPercent: number;
+  $widthPercent: number;
 }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${(props) => props.widthPercent}%;
+  width: ${(props) => props.$widthPercent}%;
   height: 100%;
   font-size: 1.5rem;
   font-family: "Roboto", sans-serif;
