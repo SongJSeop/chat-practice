@@ -45,7 +45,15 @@ export default function Header() {
       {modalOpen ? (
         <Overlay>
           <Modal>
-            <h1>방 생성</h1>
+            <input id={"room-title"} placeholder={"방 제목을 입력하세요"} />
+            <button>생성</button>
+            <button
+              onClick={() => {
+                setModalOpen(false);
+              }}
+            >
+              취소
+            </button>
           </Modal>
         </Overlay>
       ) : null}
