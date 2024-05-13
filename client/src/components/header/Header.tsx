@@ -1,9 +1,11 @@
 import { createUser, existUserId } from "api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserStore } from "stores";
+import { Overlay } from "../shared";
 
 export default function Header() {
   const { user, setUser } = useUserStore();
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const savedUserId = localStorage.getItem("userId");
@@ -22,10 +24,14 @@ export default function Header() {
     }
   }, []);
 
-  const handleCreateUser = async () => {
+  const handleCreateUserButton = async () => {
     const createdUserId = await createUser();
     localStorage.setItem("userId", createdUserId);
     setUser({ id: createdUserId });
+  };
+
+  const handleCreateRoomButton = () => {
+    setModalOpen(true);
   };
 
   return (
@@ -33,9 +39,10 @@ export default function Header() {
       {user ? (
         <span>회원 id: {user.id}</span>
       ) : (
-        <button onClick={handleCreateUser}>유저 생성</button>
+        <button onClick={handleCreateUserButton}>유저 생성</button>
       )}
-      {user ? <button>방 생성</button> : null}
+      {user ? <button onClick={handleCreateRoomButton}>방 생성</button> : null}
+      {modalOpen ? <Overlay /> : null}
     </header>
   );
 }
