@@ -1,7 +1,7 @@
 import { createUser, existUserId } from "api";
 import { useEffect, useState } from "react";
 import { useUserStore } from "stores";
-import { Overlay } from "../shared";
+import { Modal, Overlay } from "components/shared";
 
 export default function Header() {
   const { user, setUser } = useUserStore();
@@ -42,7 +42,13 @@ export default function Header() {
         <button onClick={handleCreateUserButton}>유저 생성</button>
       )}
       {user ? <button onClick={handleCreateRoomButton}>방 생성</button> : null}
-      {modalOpen ? <Overlay /> : null}
+      {modalOpen ? (
+        <Overlay>
+          <Modal>
+            <h1>방 생성</h1>
+          </Modal>
+        </Overlay>
+      ) : null}
     </header>
   );
 }
