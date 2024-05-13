@@ -1,11 +1,12 @@
 import { createUser, existUserId } from "api";
 import { useEffect, useState } from "react";
-import { useUserStore } from "stores";
+import { useChatRoomStore, useUserStore } from "stores";
 import { Modal, Overlay } from "components/shared";
 import { createChatRoom } from "api/chatApi.ts";
 
 export default function Header() {
   const { user, setUser } = useUserStore();
+  const { appendChatRoom } = useChatRoomStore();
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -41,8 +42,10 @@ export default function Header() {
       alert("방 제목을 입력하세요");
       return;
     }
-    await createChatRoom(title, user!.id);
+    const newRoom = await createChatRoom(title, user!.id);
+    appendChatRoom(newRoom);
     alert("방이 생성되었습니다.");
+    setModalOpen(false);
   };
 
   return (

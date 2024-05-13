@@ -1,13 +1,4 @@
 import styled from "styled-components";
-import { User } from "stores";
-
-export interface ChatRoomData {
-  id: string;
-  title: string;
-  users: User[];
-  createdAt: string;
-  owner: User;
-}
 
 export const ChatRoom = styled.div`
   display: flex;

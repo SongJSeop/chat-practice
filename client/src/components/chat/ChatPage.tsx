@@ -2,12 +2,13 @@ import {
   ChatRoomContainer,
   ChatRoomContainerHeader,
 } from "./ChatRoomContainer";
-import { ChatRoom, ChatRoomData, ChatRoomInnerDiv } from "./ChatRoom";
-import { useEffect, useState } from "react";
+import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
+import { useEffect } from "react";
 import { getAllChatRooms } from "api/chatApi.ts";
+import { useChatRoomStore } from "../../stores";
 
 export default function ChatPage() {
-  const [chatRooms, setChatRooms]: [ChatRoomData[], any] = useState([]);
+  const { chatRooms, setChatRooms } = useChatRoomStore();
 
   useEffect(() => {
     const getChatRooms = async () => {
@@ -36,6 +37,7 @@ export default function ChatPage() {
           onClick={() => {
             handleClickChatRoom(chatRoom.id);
           }}
+          key={chatRoom.id}
         >
           <ChatRoomInnerDiv widthPercent={10} className={"chat-room-id"}>
             {chatRoom.id}
