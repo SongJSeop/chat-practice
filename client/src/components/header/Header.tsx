@@ -1,13 +1,13 @@
 import { createUser, existUserId } from "api";
 import React, { useEffect, useState } from "react";
-import { useChatRoomStore, useUserStore } from "stores";
+import { useChatRoomsStore, useUserStore } from "stores";
 import { Modal, Overlay } from "components/shared";
 import { createChatRoom } from "api/chatApi.ts";
 
 export default function Header() {
   const [newRoomTitle, setNewRoomTitle] = useState("");
   const { user, setUser } = useUserStore();
-  const { appendChatRoom } = useChatRoomStore();
+  const { appendChatRoom } = useChatRoomsStore();
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {

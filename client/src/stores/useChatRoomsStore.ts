@@ -15,7 +15,7 @@ interface ChatRoomState {
   appendChatRoom: (chatRoom: ChatRoomData) => void;
 }
 
-export const useChatRoomStore = create<ChatRoomState>((set) => ({
+export const useChatRoomsStore = create<ChatRoomState>((set) => ({
   chatRooms: [],
   setChatRooms: (chatRooms) => set((state) => ({ ...state, chatRooms })),
   appendChatRoom: (chatRoom) =>

@@ -1,4 +1,4 @@
-import { ChatRoomData } from "stores/useChatRoomStore";
+import { ChatRoomData } from "stores/useChatRoomsStore.ts";
 import SockJS from "sockjs-client";
 import { CompatClient, Stomp } from "@stomp/stompjs";
 import { PeerConnection } from "stores/usePeerConnectionStore.ts";
@@ -19,7 +19,7 @@ export const createChatRoom = async (title: string, ownerId: string) => {
   return response.json();
 };
 
-export const getAllChatRooms = async (): Promise<ChatRoomData> => {
+export const getAllChatRooms = async (): Promise<ChatRoomData[]> => {
   const response = await fetch("http://localhost:8080/chat-rooms");
   return response.json();
 };

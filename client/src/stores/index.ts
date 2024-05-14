@@ -1,3 +1,4 @@
 export * from "./useUserStore";
-export * from "./useChatRoomStore";
+export * from "./useChatRoomsStore.ts";
 export * from "./usePeerConnectionStore";
+export * from "./useChatStore";
