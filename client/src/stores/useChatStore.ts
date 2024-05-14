@@ -3,7 +3,7 @@ import { ChatRoomData } from "./useChatRoomsStore.ts";
 
 interface ChatState {
   chat: ChatRoomData | null;
-  setChat: (chat: ChatRoomData) => void;
+  setChat: (chat: ChatRoomData | null) => void;
 }
 
 export const useChatStore = create<ChatState>((set) => ({

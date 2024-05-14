@@ -20,7 +20,12 @@ const ChatHeader = styled.div`
 `;
 
 export default function ChatScreen() {
-  const { chat } = useChatStore();
+  const { chat, setChat } = useChatStore();
+
+  const handleChatClose = () => {
+    setChat(null);
+  };
+
   return (
     <div
       style={{
@@ -36,7 +41,7 @@ export default function ChatScreen() {
             <div>
               {chat.owner.id} - {chat.title}
             </div>
-            <button>닫기</button>
+            <button onClick={handleChatClose}>닫기</button>
           </ChatHeader>
         </ChatContainer>
       ) : null}
