@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 export interface PeerConnection {
-  peerUserId: string;
-  connection: RTCPeerConnection;
+  peerId: string;
+  connection?: RTCPeerConnection;
 }
 
 interface PeerConnectionState {
