@@ -4,11 +4,18 @@ import {
 } from "./ChatRoomContainer";
 import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
 import { useEffect } from "react";
-import { getAllChatRooms } from "api/chatApi.ts";
-import { useChatRoomsStore, useChatStore } from "stores";
+import { getAllChatRooms, subscribeToRoom } from "api/chatApi.ts";
+import {
+  useChatRoomsStore,
+  useChatStore,
+  usePeerConnectionStore,
+  useUserStore,
+} from "stores";
 import { ChatScreen } from "components/chat";
 
 export default function ChatListPage() {
+  const { user } = useUserStore();
+  const { peerConnections } = usePeerConnectionStore();
   const { chatRooms, setChatRooms } = useChatRoomsStore();
   const { setChat } = useChatStore();
 
@@ -22,11 +29,16 @@ export default function ChatListPage() {
   }, []);
 
   const handleClickChatRoom = (chatRoomId: string) => {
+    if (!user) {
+      throw new Error("User not found");
+    }
+
     const room = chatRooms.find((room) => room.id === chatRoomId);
     if (!room) {
       throw new Error("Chat room not found");
     }
 
+    subscribeToRoom(chatRoomId, user.id, peerConnections);
     setChat(room);
   };
 
