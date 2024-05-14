@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const ChatRoomContainer = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 20px 200px;
