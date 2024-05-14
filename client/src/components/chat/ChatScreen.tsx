@@ -24,6 +24,10 @@ const ChatHeader = styled.div`
 `;
 
 const ChatMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   height: 80%;
   padding: 10px;
@@ -33,9 +37,20 @@ const ChatMessageContainer = styled.div`
 const ChatMessageInput = styled.input`
   width: 95%;
   height: 100%;
+  min-height: 30px;
   padding: 0 20px;
   background-color: #3f3f4f;
   color: white;
+`;
+
+const ChatMessage = styled.div<{ $isOwner?: boolean }>`
+  width: 40%;
+  padding: 10px;
+  background-color: #3f3f4f;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  align-self: ${({ $isOwner }) => ($isOwner ? "flex-end" : "flex-start")};
 `;
 
 export default function ChatScreen() {
@@ -62,7 +77,12 @@ export default function ChatScreen() {
             </div>
             <button onClick={handleChatClose}>닫기</button>
           </ChatHeader>
-          <ChatMessageContainer></ChatMessageContainer>
+          <ChatMessageContainer>
+            <ChatMessage>채팅 메시지</ChatMessage>
+            <ChatMessage $isOwner={true}>채팅 메시지</ChatMessage>
+            <ChatMessage>채팅 메시지</ChatMessage>
+            <ChatMessage>채팅 메시지</ChatMessage>
+          </ChatMessageContainer>
           <div
             style={{
               width: "100%",
@@ -72,7 +92,7 @@ export default function ChatScreen() {
             }}
           >
             <ChatMessageInput placeholder={"채팅 입력"} />
-            <button>전송</button>
+            <button style={{ minHeight: "30px" }}>전송</button>
           </div>
         </ChatContainer>
       ) : null}
