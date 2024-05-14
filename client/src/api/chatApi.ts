@@ -6,7 +6,7 @@ import { PeerConnection } from "stores/usePeerConnectionStore.ts";
 let stompClient: CompatClient;
 
 export const createChatRoom = async (title: string, ownerId: string) => {
-  const response = await fetch("http://localhost:8080/chat-rooms", {
+  const response = await fetch("/api/chat-rooms", {
     method: "POST",
     body: JSON.stringify({
       title,
@@ -20,7 +20,7 @@ export const createChatRoom = async (title: string, ownerId: string) => {
 };
 
 export const getAllChatRooms = async (): Promise<ChatRoomData[]> => {
-  const response = await fetch("http://localhost:8080/chat-rooms");
+  const response = await fetch("/api/chat-rooms");
   return response.json();
 };
 
@@ -29,7 +29,7 @@ export const subscribeToRoom = async (
   userId: string,
   peerConnections: PeerConnection[],
 ) => {
-  const socket = new SockJS("http://localhost:8080/signaling");
+  const socket = new SockJS("/api/signaling");
   stompClient = Stomp.over(socket);
 
   stompClient.connect({}, () => {
