@@ -23,6 +23,13 @@ const ChatHeader = styled.div`
   align-items: center;
 `;
 
+const ChatMessageContainer = styled.div`
+  width: 100%;
+  height: 80%;
+  padding: 10px;
+  overflow-y: scroll;
+`;
+
 const ChatMessageInput = styled.input`
   width: 95%;
   height: 100%;
@@ -55,6 +62,7 @@ export default function ChatScreen() {
             </div>
             <button onClick={handleChatClose}>닫기</button>
           </ChatHeader>
+          <ChatMessageContainer></ChatMessageContainer>
           <div
             style={{
               width: "100%",
