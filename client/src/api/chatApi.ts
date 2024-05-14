@@ -1,4 +1,4 @@
-import { ChatRoomData } from "components/chat/ChatRoom";
+import { ChatRoomData } from "stores/useChatRoomStore";
 
 export const createChatRoom = async (title: string, ownerId: string) => {
   const response = await fetch("http://localhost:8080/chat-rooms", {
