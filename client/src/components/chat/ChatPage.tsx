@@ -20,7 +20,7 @@ export default function ChatPage() {
         alignItems: "center",
       }}
     >
-      {!chat ? (
+      {chat ? (
         <ChatContainer>
           <h1>채팅창</h1>
         </ChatContainer>

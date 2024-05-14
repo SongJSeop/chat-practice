@@ -1,12 +1,9 @@
 import { create } from "zustand";
-
-export interface Chat {
-  roomId: string;
-}
+import { ChatRoomData } from "./useChatRoomsStore.ts";
 
 interface ChatState {
-  chat: Chat | null;
-  setChat: (chat: Chat) => void;
+  chat: ChatRoomData | null;
+  setChat: (chat: ChatRoomData) => void;
 }
 
 export const useChatStore = create<ChatState>((set) => ({

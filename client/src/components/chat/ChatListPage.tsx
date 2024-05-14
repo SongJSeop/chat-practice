@@ -5,11 +5,12 @@ import {
 import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
 import { useEffect } from "react";
 import { getAllChatRooms } from "api/chatApi.ts";
-import { useChatRoomsStore } from "stores";
+import { useChatRoomsStore, useChatStore } from "stores";
 import ChatPage from "./ChatPage";
 
 export default function ChatListPage() {
   const { chatRooms, setChatRooms } = useChatRoomsStore();
+  const { setChat } = useChatStore();
 
   useEffect(() => {
     const getChatRooms = async () => {
@@ -21,7 +22,12 @@ export default function ChatListPage() {
   }, []);
 
   const handleClickChatRoom = (chatRoomId: string) => {
-    alert(`ChatRoomId: ${chatRoomId}`);
+    const room = chatRooms.find((room) => room.id === chatRoomId);
+    if (!room) {
+      throw new Error("Chat room not found");
+    }
+
+    setChat(room);
   };
 
   return (
