@@ -6,7 +6,7 @@ import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
 import { useEffect } from "react";
 import { getAllChatRooms } from "api/chatApi.ts";
 import { useChatRoomsStore, useChatStore } from "stores";
-import ChatPage from "./ChatPage";
+import { ChatScreen } from "components/chat";
 
 export default function ChatListPage() {
   const { chatRooms, setChatRooms } = useChatRoomsStore();
@@ -32,7 +32,7 @@ export default function ChatListPage() {
 
   return (
     <ChatRoomContainer>
-      <ChatPage />
+      <ChatScreen />
       <ChatRoomContainerHeader>
         <ChatRoomInnerDiv $widthPercent={10}>방 번호</ChatRoomInnerDiv>
         <ChatRoomInnerDiv $widthPercent={50}>방 제목</ChatRoomInnerDiv>

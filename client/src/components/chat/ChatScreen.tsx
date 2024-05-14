@@ -9,7 +9,7 @@ const ChatContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export default function ChatPage() {
+export default function ChatScreen() {
   const { chat } = useChatStore();
   return (
     <div

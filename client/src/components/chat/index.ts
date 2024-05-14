@@ -1,3 +1,3 @@
 export { default as ChatListPage } from "./ChatListPage";
-export { default as ChatPage } from "./ChatPage";
+export { default as ChatScreen } from "./ChatScreen";
 export * from "./ChatRoom";
