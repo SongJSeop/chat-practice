@@ -9,6 +9,16 @@ const ChatContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const ChatHeader = styled.div`
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  background-color: #3f3f4f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export default function ChatScreen() {
   const { chat } = useChatStore();
   return (
@@ -22,7 +32,12 @@ export default function ChatScreen() {
     >
       {chat ? (
         <ChatContainer>
-          <h1>채팅창</h1>
+          <ChatHeader>
+            <div>
+              {chat.owner.id} - {chat.title}
+            </div>
+            <button>닫기</button>
+          </ChatHeader>
         </ChatContainer>
       ) : null}
     </div>
