@@ -26,4 +26,13 @@ class SignalingController {
     ): String {
         return answer
     }
+
+    @MessageMapping("/chat/{roomId}")
+    @SendTo("/topic/chat/{roomId}")
+    fun sendChat(
+        @Payload chat: String,
+        @DestinationVariable(value = "roomId") roomId: String
+    ): String {
+        return chat
+    }
 }
