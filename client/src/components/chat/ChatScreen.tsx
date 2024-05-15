@@ -1,5 +1,6 @@
-import { useChatStore } from "stores";
+import { useChatStore, useUserStore } from "stores";
 import styled from "styled-components";
+import { sendChat } from "../../api/chatApi.ts";
 
 const ChatContainer = styled.div`
   display: flex;
@@ -54,10 +55,31 @@ const ChatMessage = styled.div<{ $isOwner?: boolean }>`
 `;
 
 export default function ChatScreen() {
+  const { user } = useUserStore();
   const { chat, setChat } = useChatStore();
 
   const handleChatClose = () => {
     setChat(null);
+  };
+
+  const handleSendMessage = () => {
+    if (!chat) {
+      throw new Error("Chat not found");
+    }
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const messageInput = document.getElementById(
+      "message-input",
+    ) as HTMLInputElement;
+    const message = messageInput.value;
+    if (!message) {
+      return;
+    }
+
+    sendChat(chat.id, user.id, message);
   };
 
   return (
@@ -73,7 +95,7 @@ export default function ChatScreen() {
         <ChatContainer>
           <ChatHeader>
             <div>
-              {chat.owner.id} - {chat.title}
+              {chat.owner.id}의 방 - {chat.title}
             </div>
             <button onClick={handleChatClose}>닫기</button>
           </ChatHeader>
@@ -91,8 +113,10 @@ export default function ChatScreen() {
               alignItems: "center",
             }}
           >
-            <ChatMessageInput placeholder={"채팅 입력"} />
-            <button style={{ minHeight: "30px" }}>전송</button>
+            <ChatMessageInput placeholder={"채팅 입력"} id={"message-input"} />
+            <button style={{ minHeight: "30px" }} onClick={handleSendMessage}>
+              전송
+            </button>
           </div>
         </ChatContainer>
       ) : null}

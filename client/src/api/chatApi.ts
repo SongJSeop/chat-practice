@@ -65,6 +65,11 @@ export const subscribeToRoom = async (
         new RTCSessionDescription(answer),
       );
     });
+
+    stompClient.subscribe(`/topic/chat/${roomId}`, (message) => {
+      const chat = JSON.parse(message.body).message;
+      console.log(chat);
+    });
   });
 };
 
@@ -77,11 +82,30 @@ const sendAnswer = async (
     peerConnection.connection?.setLocalDescription(answer);
     stompClient.send(
       `/app/answer/${roomId}`,
-      {},
+      {
+        "Content-Type": "application/json",
+      },
       JSON.stringify({
         peerId: userId,
         answer,
       }),
     );
   });
+};
+
+export const sendChat = async (
+  roomId: string,
+  userId: string,
+  message: string,
+) => {
+  stompClient.send(
+    `/app/chat/${roomId}`,
+    {
+      "Content-Type": "application/json",
+    },
+    JSON.stringify({
+      userId,
+      message,
+    }),
+  );
 };
