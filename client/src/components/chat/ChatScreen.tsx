@@ -80,6 +80,15 @@ export default function ChatScreen() {
     }
 
     sendChat(chat.id, user.id, message);
+    messageInput.value = "";
+  };
+
+  const handleMessageInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
+    }
   };
 
   return (
@@ -113,7 +122,11 @@ export default function ChatScreen() {
               alignItems: "center",
             }}
           >
-            <ChatMessageInput placeholder={"채팅 입력"} id={"message-input"} />
+            <ChatMessageInput
+              placeholder={"채팅 입력"}
+              id={"message-input"}
+              onKeyDown={handleMessageInputKeyDown}
+            />
             <button style={{ minHeight: "30px" }} onClick={handleSendMessage}>
               전송
             </button>
