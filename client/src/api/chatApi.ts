@@ -72,9 +72,9 @@ export const subscribeToRoom = async (
     stompClient.subscribe(`/topic/chat/${roomId}`, (message) => {
       const chat = JSON.parse(message.body);
       if (chat.userId === userId) {
-        addMessage({ text: chat.message, userId: chat.userId, isOwner: true });
+        addMessage({ text: chat.message, userId, isOwner: true });
       } else {
-        addMessage({ text: chat.message, userId, isOwner: false });
+        addMessage({ text: chat.message, userId: chat.userId, isOwner: false });
       }
     });
   });
