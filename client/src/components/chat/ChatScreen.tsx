@@ -116,7 +116,7 @@ export default function ChatScreen() {
                 $isOwner={message.isOwner}
                 style={{ margin: "10px 0" }}
               >
-                {message.text}
+                {message.userId} - {message.text}
               </ChatMessage>
             ))}
           </ChatMessageContainer>

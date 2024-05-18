@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export interface ChatMessageData {
   text: string;
+  userId: string;
   isOwner: boolean;
 }
 
