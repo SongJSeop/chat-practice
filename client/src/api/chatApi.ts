@@ -2,6 +2,7 @@ import { ChatRoomData } from "stores/useChatRoomsStore.ts";
 import SockJS from "sockjs-client";
 import { CompatClient, Stomp } from "@stomp/stompjs";
 import { PeerConnection } from "stores/usePeerConnectionStore.ts";
+import { ChatMessageData } from "stores";
 
 let stompClient: CompatClient;
 
@@ -28,9 +29,11 @@ export const subscribeToRoom = async (
   roomId: string,
   userId: string,
   peerConnections: PeerConnection[],
+  addMessage: (message: ChatMessageData) => void,
 ) => {
   const socket = new SockJS("/api/signaling");
   stompClient = Stomp.over(socket);
+  stompClient.debug = () => {};
 
   stompClient.connect({}, () => {
     stompClient.subscribe(`/topic/offer/${roomId}`, (message) => {
@@ -67,8 +70,12 @@ export const subscribeToRoom = async (
     });
 
     stompClient.subscribe(`/topic/chat/${roomId}`, (message) => {
-      const chat = JSON.parse(message.body).message;
-      console.log(chat);
+      const chat = JSON.parse(message.body);
+      if (chat.userId === userId) {
+        addMessage({ text: chat.message, isOwner: true });
+      } else {
+        addMessage({ text: chat.message, isOwner: false });
+      }
     });
   });
 };

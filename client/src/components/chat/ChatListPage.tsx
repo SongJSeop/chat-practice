@@ -6,6 +6,7 @@ import { ChatRoom, ChatRoomInnerDiv } from "./ChatRoom";
 import { useEffect } from "react";
 import { getAllChatRooms, subscribeToRoom } from "api/chatApi.ts";
 import {
+  useChatMessagesStore,
   useChatRoomsStore,
   useChatStore,
   usePeerConnectionStore,
@@ -18,6 +19,7 @@ export default function ChatListPage() {
   const { peerConnections } = usePeerConnectionStore();
   const { chatRooms, setChatRooms } = useChatRoomsStore();
   const { setChat } = useChatStore();
+  const { setMessages, addMessage } = useChatMessagesStore();
 
   useEffect(() => {
     const getChatRooms = async () => {
@@ -38,7 +40,8 @@ export default function ChatListPage() {
       throw new Error("Chat room not found");
     }
 
-    subscribeToRoom(chatRoomId, user.id, peerConnections);
+    subscribeToRoom(chatRoomId, user.id, peerConnections, addMessage);
+    setMessages([]);
     setChat(room);
   };
 

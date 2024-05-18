@@ -1,4 +1,4 @@
-import { useChatStore, useUserStore } from "stores";
+import { useChatMessagesStore, useChatStore, useUserStore } from "stores";
 import styled from "styled-components";
 import { sendChat } from "../../api/chatApi.ts";
 
@@ -57,6 +57,7 @@ const ChatMessage = styled.div<{ $isOwner?: boolean }>`
 export default function ChatScreen() {
   const { user } = useUserStore();
   const { chat, setChat } = useChatStore();
+  const { messages } = useChatMessagesStore();
 
   const handleChatClose = () => {
     setChat(null);
@@ -109,10 +110,15 @@ export default function ChatScreen() {
             <button onClick={handleChatClose}>닫기</button>
           </ChatHeader>
           <ChatMessageContainer>
-            <ChatMessage>채팅 메시지</ChatMessage>
-            <ChatMessage $isOwner={true}>채팅 메시지</ChatMessage>
-            <ChatMessage>채팅 메시지</ChatMessage>
-            <ChatMessage>채팅 메시지</ChatMessage>
+            {messages.map((message, index) => (
+              <ChatMessage
+                key={index}
+                $isOwner={message.isOwner}
+                style={{ margin: "10px 0" }}
+              >
+                {message.text}
+              </ChatMessage>
+            ))}
           </ChatMessageContainer>
           <div
             style={{
