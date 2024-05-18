@@ -114,9 +114,10 @@ export default function ChatScreen() {
               <ChatMessage
                 key={index}
                 $isOwner={message.isOwner}
-                style={{ margin: "10px 0" }}
+                style={{ margin: "10px 0", overflowWrap: "break-word" }}
               >
-                {message.userId} - {message.text}
+                <div style={{ color: "gray" }}>{message.userId}</div>
+                <div>{message.text}</div>
               </ChatMessage>
             ))}
           </ChatMessageContainer>
